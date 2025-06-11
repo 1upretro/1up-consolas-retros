@@ -1,51 +1,337 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>1Up Consolas Retros</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1UP Retro Games | Máquinas Arcade Personalizadas</title>
+    <!-- Fuente arcade -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Íconos Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #0a0a0a;
+            color: #fff;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        
+        /* Efecto de borde neon para el logo */
+        .logo-container img {
+            height: 120px;
+            filter: 
+                drop-shadow(0 0 5px #ff00ff) 
+                drop-shadow(0 0 15px #ff00ff)
+                drop-shadow(0 0 25px #0ff);
+            animation: neon-pulse 1.5s infinite alternate;
+        }
+        
+        @keyframes neon-pulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; filter: 
+                drop-shadow(0 0 10px #ff00ff) 
+                drop-shadow(0 0 20px #ff00ff)
+                drop-shadow(0 0 30px #0ff); }
+        }
+        
+        header {
+            background: url('https://images.unsplash.com/photo-1607853202273-797f1c22a38e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 4px solid #ff00ff;
+            position: relative;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            color: #0ff;
+            font-size: 1.8rem;
+            margin-top: 15px;
+            text-shadow: 0 0 10px #0ff;
+        }
+        
+        nav {
+            background-color: #000;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            border-top: 2px solid #ff00ff;
+            border-bottom: 2px solid #ff00ff;
+        }
+        
+        nav a {
+            color: #0ff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid #0ff;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #0ff;
+            color: #000;
+            box-shadow: 0 0 15px #0ff;
+        }
+        
+        .hero {
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2rem;
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+            animation: flicker 1.5s infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow:
+                    0 0 5px #ff00ff,
+                    0 0 10px #ff00ff,
+                    0 0 20px #ff00ff;
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+            }
+        }
+        
+        .productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            background-color: #111;
+        }
+        
+        .producto {
+            background: #000;
+            border: 3px solid #0ff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .producto:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px #0ff;
+            border-color: #ff00ff;
+        }
+        
+        .producto img {
+            width: 100%;
+            border: 2px solid #ff00ff;
+            filter: brightness(1.1);
+        }
+        
+        .precio {
+            color: #ff00ff;
+            font-size: 1.3rem;
+            margin: 1rem 0;
+        }
+        
+        .btn-comprar {
+            background: transparent;
+            color: #0ff;
+            border: 2px solid #0ff;
+            padding: 0.8rem 1.5rem;
+            font-family: 'Press Start 2P', cursive;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.8rem;
+        }
+        
+        .btn-comprar:hover {
+            background: #0ff;
+            color: #000;
+            box-shadow: 0 0 15px #0ff;
+        }
+        
+        footer {
+            background: #000;
+            text-align: center;
+            padding: 2rem;
+            border-top: 4px solid #ff00ff;
+        }
+        
+        footer p {
+            margin: 0;
+            color: #0ff;
+            font-size: 0.7rem;
+        }
+        
+        /* Efecto CRT retro */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(18, 16, 16, 0.1) 50%, 
+                transparent 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* ----- NUEVOS ESTILOS PARA REDES ----- */
+        .redes-sociales {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .redes-sociales a {
+            color: #0ff;
+            font-size: 1.8rem;
+            transition: all 0.3s;
+        }
+
+        .redes-sociales a:hover {
+            color: #ff00ff;
+            transform: scale(1.2);
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
+        /* Botón WhatsApp flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.7);
+            z-index: 99;
+            animation: pulse 1.5s infinite;
+            border: 2px solid #fff;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            animation: none;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="1Up Consolas Retros" class="logo" />
-    <p>Consolas arcade personalizadas con estilo retro y mucha nostalgia</p>
-  </header>
+    <header>
+        <div class="header-content">
+            <!-- REEMPLAZA "logo.jpeg" CON TU ARCHIVO -->
+            <div class="logo-container">
+                <img src="logo.jpeg" alt="1UP Retro Games">
+            </div>
+            <h1>MÁQUINAS ARCADE PERSONALIZADAS</h1>
+        </div>
+    </header>
+    <nav>
+        <a href="#inicio">INICIO</a>
+        <a href="#productos">PRODUCTOS</a>
+        <a href="#galeria">GALERÍA</a>
+        <a href="#contacto">CONTACTO</a>
+    </nav>
+    <section class="hero" id="inicio">
+        <h2>¡INSERT COIN TO START!</h2>
+    </section>
+    <section id="productos">
+        <h2 style="text-align: center; padding-top: 2rem; color: #0ff;">NUESTRAS MÁQUINAS</h2>
+        <div class="productos">
+            <div class="producto">
+                <img src="https://via.placeholder.com/400x300?text=ARCADE+CLASSIC" alt="Arcade Classic">
+                <h3>ARCADE CLASSIC</h3>
+                <p>100 juegos clásicos: Pac-Man, Street Fighter II, Donkey Kong.</p>
+                <p class="precio">$299.99</p>
+                <button class="btn-comprar">INSERT COIN</button>
+            </div>
+            <div class="producto">
+                <img src="https://via.placeholder.com/400x300?text=ARCADE+PRO" alt="Arcade Pro">
+                <h3>ARCADE PRO</h3>
+                <p>500 juegos + mandos inalámbricos y diseño personalizado.</p>
+                <p class="precio">$499.99</p>
+                <button class="btn-comprar">INSERT COIN</button>
+            </div>
+            <div class="producto">
+                <img src="https://via.placeholder.com/400x300?text=MINI+ARCADE" alt="Mini Arcade">
+                <h3>MINI ARCADE</h3>
+                <p>Portátil con 50 juegos, ideal para coleccionistas.</p>
+                <p class="precio">$149.99</p>
+                <button class="btn-comprar">INSERT COIN</button>
+            </div>
+        </div>
+    </section>
+    <section id="contacto" style="background: #000; padding: 3rem; text-align: center; border-top: 2px solid #0ff;">
+        <h2 style="color: #ff00ff; margin-bottom: 1.5rem;">CONTACTO</h2>
+        <div class="redes-sociales">
+            <!-- Instagram -->
+            <a href="https://instagram.com/1Up_retrogames" target="_blank" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <!-- Email -->
+            <a href="mailto:ventas@1upretrogames.com" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <!-- Teléfono -->
+            <a href="tel:+543516017525" title="Llamar">
+                <i class="fas fa-phone"></i>
+            </a>
+        </div>
+        <p>📧 ventas@1upretrogames.com</p>
+        <p>📞 +54 351 601-7525</p>
+        <p>📍 Buenos Aires, Argentina</p>
+    </section>
 
-  <section>
-    <h2>Nuestras Consolas</h2>
-    <p>Fabricamos consolas arcade bartop, mini y de mesa, personalizadas al gusto del cliente.</p>
-    <div class="gallery">
-      <img src="5zFJYDu.jpg" alt="Consola arcade 1" />
-      <img src="Yr1sCrL.jpg" alt="Consola arcade 2" />
-      <img src="k7vCuAD.jpg" alt="Consola arcade 3" />
-    </div>
-  </section>
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/543516017525" class="whatsapp-float" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-  <section>
-    <h2>¿Quiénes somos?</h2>
-    <p>1Up Consolas Retros nace de la pasión por los videojuegos clásicos.</p>
-  </section>
-
-  <section>
-    <h2>Personaliza tu consola</h2>
-    <p>Elige diseño, colores, tipo de juegos y más.</p>
-  </section>
-
-  <section>
-    <h2>Contacto</h2>
-    <p>
-      📩 contacto@1uparcade.com<br />
-      📱 +54 9 11 1234-5678<br />
-      📷 Instagram: @1upconsolasretros
-    </p>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 1Up Consolas Retros</p>
-  </footer>
-
-  <script src="script.js"></script>
+    <footer>
+        <p>© 2024 1UP RETRO GAMES | TODOS LOS DERECHOS RESERVADOS</p>
+        <p style="margin-top: 1rem;">¡PRESS START TO PLAY!</p>
+    </footer>
 </body>
 </html>
