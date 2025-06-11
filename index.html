@@ -62,9 +62,10 @@
         
         h1 {
             color: #0ff;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-top: 15px;
             text-shadow: 0 0 10px #0ff;
+            line-height: 1.4;
         }
         
         nav {
@@ -125,10 +126,10 @@
             }
         }
         
+        /* Un solo producto centrado */
         .productos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            display: flex;
+            justify-content: center;
             padding: 2rem;
             background-color: #111;
         }
@@ -137,8 +138,26 @@
             background: #000;
             border: 3px solid #0ff;
             border-radius: 8px;
-            padding: 1.5rem;
+            padding: 2rem;
             transition: all 0.3s;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+        
+        /* Sello "EDICIÓN LIMITADA" */
+        .producto::before {
+            content: "EDICIÓN LIMITADA";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ff00ff;
+            color: #000;
+            padding: 5px 10px;
+            font-size: 0.7rem;
+            transform: rotate(15deg);
+            z-index: 1;
+            box-shadow: 0 0 10px #ff00ff;
         }
         
         .producto:hover {
@@ -155,25 +174,61 @@
         
         .precio {
             color: #ff00ff;
-            font-size: 1.3rem;
-            margin: 1rem 0;
+            font-size: 1.5rem;
+            margin: 1.5rem 0;
         }
         
         .btn-comprar {
             background: transparent;
             color: #0ff;
             border: 2px solid #0ff;
-            padding: 0.8rem 1.5rem;
+            padding: 1rem 2rem;
             font-family: 'Press Start 2P', cursive;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 0.8rem;
+            font-size: 1rem;
         }
         
         .btn-comprar:hover {
             background: #0ff;
             color: #000;
             box-shadow: 0 0 15px #0ff;
+        }
+
+        /* Estilos para la galería */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 0 2rem;
+            margin: 2rem 0;
+        }
+        
+        .galeria-grid img {
+            width: 100%;
+            border: 2px solid #0ff;
+            transition: all 0.3s;
+        }
+        
+        .galeria-grid img:hover {
+            transform: scale(1.03);
+            border-color: #ff00ff;
+            box-shadow: 0 0 15px #ff00ff;
+        }
+        
+        .btn-instagram {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #ff00ff;
+            text-decoration: none;
+            border: 2px solid #ff00ff;
+            padding: 10px 20px;
+            transition: all 0.3s;
+        }
+        
+        .btn-instagram:hover {
+            background: #ff00ff;
+            color: #000;
         }
         
         footer {
@@ -206,7 +261,7 @@
             z-index: 100;
         }
 
-        /* ----- NUEVOS ESTILOS PARA REDES ----- */
+        /* Estilos para redes sociales */
         .redes-sociales {
             display: flex;
             justify-content: center;
@@ -256,6 +311,89 @@
             background-color: #128C7E;
             animation: none;
         }
+
+        /* Estilos para el modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.4s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background: #000;
+            margin: 5% auto;
+            padding: 20px;
+            border: 3px solid #ff00ff;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 0 30px #ff00ff;
+            text-align: center;
+        }
+        
+        .close-modal {
+            color: #ff00ff;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: #0ff;
+            transform: rotate(90deg);
+        }
+        
+        .modal-image {
+            width: 100%;
+            border: 2px solid #0ff;
+            margin: 1rem 0;
+        }
+        
+        .modal-price {
+            color: #ff00ff;
+            font-size: 2rem;
+            margin: 1rem 0;
+            text-shadow: 0 0 10px #ff00ff;
+            animation: flicker 1.5s infinite alternate;
+        }
+        
+        .modal-text {
+            color: #0ff;
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+        
+        .btn-whatsapp {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 12px 24px;
+            margin: 1.5rem 0;
+            text-decoration: none;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            border: 2px solid #fff;
+            transition: all 0.3s;
+        }
+        
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -265,7 +403,7 @@
             <div class="logo-container">
                 <img src="logo.jpeg" alt="1UP Retro Games">
             </div>
-            <h1>MÁQUINAS ARCADE PERSONALIZADAS</h1>
+            <h1>¡CONSTRUIMOS DIVERSIÓN,<br>PIXEL POR PIXEL!</h1>
         </div>
     </header>
     <nav>
@@ -278,31 +416,41 @@
         <h2>¡INSERT COIN TO START!</h2>
     </section>
     <section id="productos">
-        <h2 style="text-align: center; padding-top: 2rem; color: #0ff;">NUESTRAS MÁQUINAS</h2>
+        <h2 style="text-align: center; padding-top: 2rem; color: #0ff;">NUESTRA MÁQUINA ARCADE</h2>
         <div class="productos">
             <div class="producto">
-                <img src="https://via.placeholder.com/400x300?text=ARCADE+CLASSIC" alt="Arcade Classic">
-                <h3>ARCADE CLASSIC</h3>
-                <p>100 juegos clásicos: Pac-Man, Street Fighter II, Donkey Kong.</p>
-                <p class="precio">$299.99</p>
-                <button class="btn-comprar">INSERT COIN</button>
-            </div>
-            <div class="producto">
-                <img src="https://via.placeholder.com/400x300?text=ARCADE+PRO" alt="Arcade Pro">
-                <h3>ARCADE PRO</h3>
-                <p>500 juegos + mandos inalámbricos y diseño personalizado.</p>
+                <img src="https://via.placeholder.com/500x300?text=ARCADE+PRO" alt="Arcade Pro">
+                <h3>ARCADE PRO EDITION</h3>
+                <p>La máquina definitiva con 500 juegos clásicos:<br>
+                • Pac-Man • Street Fighter II • Metal Slug<br>
+                • Donkey Kong • Mortal Kombat • y más</p>
                 <p class="precio">$499.99</p>
-                <button class="btn-comprar">INSERT COIN</button>
-            </div>
-            <div class="producto">
-                <img src="https://via.placeholder.com/400x300?text=MINI+ARCADE" alt="Mini Arcade">
-                <h3>MINI ARCADE</h3>
-                <p>Portátil con 50 juegos, ideal para coleccionistas.</p>
-                <p class="precio">$149.99</p>
-                <button class="btn-comprar">INSERT COIN</button>
+                <button class="btn-comprar" onclick="openModal()">INSERT COIN</button>
             </div>
         </div>
     </section>
+
+    <!-- Sección Galería -->
+    <section id="galeria" style="background: #000; padding: 3rem 0; text-align: center; border-top: 2px solid #0ff;">
+        <h2 style="color: #ff00ff; text-shadow: 0 0 10px #ff00ff;">GALERÍA</h2>
+        
+        <div class="galeria-grid">
+            <!-- 
+               INSTRUCCIONES:
+               1. Reemplaza estas imágenes de ejemplo por tus propias fotos
+               2. Cambia el "alt" por descripciones de tus máquinas
+               3. Añade más <img> según necesites
+            -->
+            <img src="https://via.placeholder.com/300x300?text=Ejemplo+1" alt="Máquina arcade personalizada">
+            <img src="https://via.placeholder.com/300x300?text=Ejemplo+2" alt="Detalle de mandos arcade">
+            <img src="https://via.placeholder.com/300x300?text=Ejemplo+3" alt="Cliente jugando">
+        </div>
+        
+        <a href="https://instagram.com/1Up_retrogames" target="_blank" class="btn-instagram">
+            VER MÁS EN INSTAGRAM <i class="fab fa-instagram"></i>
+        </a>
+    </section>
+
     <section id="contacto" style="background: #000; padding: 3rem; text-align: center; border-top: 2px solid #0ff;">
         <h2 style="color: #ff00ff; margin-bottom: 1.5rem;">CONTACTO</h2>
         <div class="redes-sociales">
@@ -324,6 +472,23 @@
         <p>📍 Buenos Aires, Argentina</p>
     </section>
 
+    <!-- Modal para mostrar al hacer clic en "INSERT COIN" -->
+    <div id="arcadeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3 style="color: #0ff; margin-bottom: 1rem;">ARCADE PRO EDITION</h3>
+            <img src="https://via.placeholder.com/600x400?text=IMAGEN+DE+LA+CONSOLA" class="modal-image" alt="Detalle de la máquina arcade">
+            <div class="modal-price">¡SOLO $499.99!</div>
+            <div class="modal-text">✔ 500 juegos clásicos incluidos</div>
+            <div class="modal-text">✔ Mandos profesionales arcade</div>
+            <div class="modal-text">✔ Diseño personalizable</div>
+            <div class="modal-text">✔ Garantía 12 meses</div>
+            <a href="https://wa.me/543516017525" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> COMPRAR AHORA
+            </a>
+        </div>
+    </div>
+
     <!-- Botón flotante de WhatsApp -->
     <a href="https://wa.me/543516017525" class="whatsapp-float" title="WhatsApp">
         <i class="fab fa-whatsapp"></i>
@@ -333,5 +498,34 @@
         <p>© 2024 1UP RETRO GAMES | TODOS LOS DERECHOS RESERVADOS</p>
         <p style="margin-top: 1rem;">¡PRESS START TO PLAY!</p>
     </footer>
+
+    <script>
+        // Funciones para el modal
+        function openModal() {
+            document.getElementById('arcadeModal').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Evita scroll cuando el modal está abierto
+        }
+        
+        function closeModal() {
+            document.getElementById('arcadeModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura el scroll
+        }
+        
+        // Cerrar al hacer clic fuera del modal
+        window.onclick = function(event) {
+            const modal = document.getElementById('arcadeModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        // Cerrar con tecla ESC
+        document.onkeydown = function(evt) {
+            evt = evt || window.event;
+            if (evt.keyCode == 27) {
+                closeModal();
+            }
+        };
+    </script>
 </body>
 </html>
